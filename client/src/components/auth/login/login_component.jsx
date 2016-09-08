@@ -8,9 +8,11 @@ const Login = () => {
     return (
         <div>
             <UnauthHeader />
-            <main>
-                 <div className="loginFormWrapper">
+            <main className="logoBg">
+                 <div className="authWrapper loginFormWrapper">
+                    <h1>Title</h1>
                     <LoginForm />
+                    <p>Not a member? <a href="/signup">Sign Up!</a></p>
                 </div>
             </main>
         </div>

@@ -6,7 +6,9 @@ const Header = () => {
         <header>
             <div className="wrapper clearfix">
                 <h1>
-                    <img src="http://yadayadacreative.com/CDA/legitLogo.png" alt=""/>
+                    <a href="/home">
+                        <img src="http://yadayadacreative.com/CDA/legitLogo.png" alt=""/>
+                    </a>
                 </h1>
                 <nav className="clearfix">
                     <ul>

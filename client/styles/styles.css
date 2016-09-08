@@ -45,6 +45,7 @@ q:before, q:after {
 }
 a{
     text-decoration: none;
+    color: #333;
 }
 
 .clearfix:after{
@@ -136,6 +137,10 @@ header .button{
 /* ------------- DASHBOARD ----------*/
 main {
     margin-top: 75px;
+    min-height: 700px;
+}
+
+.logoBg{
     background-image: url('http://yadayadacreative.com/CDA/logoLarge.png');
     background-repeat: no-repeat;
     background-position: center center fixed; 
@@ -178,7 +183,12 @@ main {
     text-transform: uppercase;
     background-color: #F26248;
     color: white;
-    padding: 15px 0;
+    padding: 15px 30px;
+}
+
+.dashboardCols h3 > a {
+    float: right;
+    color: white;
 }
 
 .dashboardSummary{
@@ -279,6 +289,52 @@ main {
     margin: 10px 0;
 }
 
+/* -------- SIGN UP/SIGN IN --------------*/
+.authWrapper{
+    width: 350px;
+    margin: 50px auto;
+    background-color: rgba(248, 248, 248, 0.95);
+    padding: 30px;
+}
+
+.authWrapper input, .authWrapper button, .formWrapper form input, .formWrapper button{
+    display: block;
+    width: 90%;
+    border-radius: 5px;
+    font-size: 18px;
+    padding: 10px;
+    margin: 0 auto;
+}
+
+.authWrapper input{
+    margin: 10px auto;
+    border: none;
+}
+
+.authWrapper button, .formWrapper button{
+    text-align: center;
+    text-transform: uppercase;
+    color: #9BC73C;
+    border: 1px solid #9BC73C;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.authWrapper button:hover, .formWrapper button:hover{
+    background-color: #9BC73C;
+    color: white;
+}
+
+.authWrapper p{
+    text-align: center;
+    margin: 25px 0 10px;
+}
+
+.authWrapper p a{
+    text-decoration: underline;
+    color: #333;
+}
+
 
 /* ---------WELCOME-----------*/
 .intro, .team, .about{
@@ -292,11 +348,12 @@ main {
     background-color: rgba(248, 248, 248, 0.95);
 }
 
-.intro h1{
+.intro h1, .authWrapper h1{
     font-size: 92px;
     color: #F26248;
     text-transform: uppercase;
     font-family: 'Baloo Tamma', cursive;
+    text-align: center;
 }
 
 .intro h2{
@@ -342,4 +399,56 @@ main {
     width: 150px;
     height: 150px;
     border-radius: 50%;
+}
+
+
+
+
+/* -------- FORMS --------------*/
+.formWrapper{
+    background-color: rgba(255, 255, 255, 0.95);
+    min-height: 700px;
+    padding-top: 50px;
+}
+
+.formWrapper h3{
+    font-size: 52px;
+    text-align: center;
+    font-weight: normal;
+    color: #9BC73C;
+    text-transform: uppercase;
+}
+
+.formWrapper form{
+    width: 400px;
+    margin: 0 auto;
+}
+
+.formWrapper form input{
+    width: 90%;
+    margin: 10px auto;
+    border: 1px solid #ccc;
+}
+
+.daysOfWeekCheckboxes{
+    width: 90%;
+    margin: 5px auto;
+}
+
+form .daysOfWeekCheckboxes input{
+    display: inline;
+    margin-left: 10px;
+    width: 20px;
+}
+
+form .daysOfWeekCheckboxes input:first-of-type{
+    margin-left: 0;
+}
+
+form label{
+    margin: 25px auto 0;
+    display: block;
+    width: 90%;
+    font-size: 20px;
+    color: #193441;
 }

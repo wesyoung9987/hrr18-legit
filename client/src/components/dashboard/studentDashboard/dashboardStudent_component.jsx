@@ -15,7 +15,7 @@ const DashboardStudent = () => {
                     <DashboardSummary />
                     <div className="dashboardCols">
                         <div>
-                            <h3>Assignments</h3>
+                            <h3>Assignments <a><i className="fa fa-plus" aria-hidden="true"></i></a></h3>
                             <DashboardLeftCol />
                         </div>
                         <div>

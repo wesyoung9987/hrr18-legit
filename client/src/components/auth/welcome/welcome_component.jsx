@@ -7,17 +7,17 @@ const Welcome = () => {
     return (
         <div>
             <UnauthHeader />
-            <main>
+            <main className="logoBg">
                 <div className="welcomeWrapper">
                     <div className="intro">
                         <h1>Title</h1>
                         <h2>Excel no more.</h2>
                         <h2>Track your classes, attendance, and student outcomes.</h2>
                     </div>
-                    <div className="about">
+                    <div id="about" className="about">
                         <h3><i className="fa fa-info" aria-hidden="true"></i> About </h3>
                     </div>
-                    <div className="team">
+                    <div id="team" className="team">
                         <h3><i className="fa fa-users" aria-hidden="true"></i> Meet the Team</h3>
                         <ul className="teamUl clearfix">
                             <li>

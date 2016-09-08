@@ -7,7 +7,6 @@ const DashboardSummary = () => {
             <div className="dashboardSummaryProf">
                 <img src="http://www.globaldetroit.com/wp-content/uploads/2014/10/Gracie-Headshot-square.png" alt=""/>
                 <h3>@yctercero</h3>
-                <a className="button">Edit Profile</a>
             </div>
             <div className="dashboardSummaryStats clearfix">
                 <div>

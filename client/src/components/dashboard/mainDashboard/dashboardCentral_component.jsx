@@ -15,7 +15,7 @@ const Dashboard = () => {
                     <DashboardSummary />
                     <div className="dashboardCols">
                         <div>
-                            <h3>Classes</h3>
+                            <h3>Classes <a href="/classform"><i className="fa fa-plus" aria-hidden="true"></i></a></h3>
                             <DashboardLeftCol />
                         </div>
                         <div>

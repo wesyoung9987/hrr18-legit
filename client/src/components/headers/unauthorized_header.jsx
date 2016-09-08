@@ -5,19 +5,21 @@ const UnauthHeader = () => {
     return (
         <header>
             <div className="wrapper clearfix">
-                <h1>
-                    <img src="http://yadayadacreative.com/CDA/legitLogo.png" alt=""/>
+                <h1>    
+                    <a href="/welcome">
+                        <img src="http://yadayadacreative.com/CDA/legitLogo.png" alt=""/>
+                    </a>
                 </h1>
                 <nav className="clearfix">
                     <ul>
                         <li>
-                            <a>
+                            <a href="/welcome#about">
                                 <i className="fa fa-info" aria-hidden="true"></i> 
                                 About
                             </a>
                         </li>
                         <li>
-                            <a>
+                            <a href="/welcome#team">
                                 <i className="fa fa-users" aria-hidden="true"></i> 
                                 Team
                             </a>
