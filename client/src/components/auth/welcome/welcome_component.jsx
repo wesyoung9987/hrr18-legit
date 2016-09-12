@@ -27,25 +27,25 @@ const Welcome = () => {
                         <h3><i className="fa fa-users" aria-hidden="true"></i> Meet the Team</h3>
                         <ul className="teamUl clearfix">
                             <li>
-                                <img src="http://yadayadacreative.com/CDA/jfritz.png" alt=""/>
+                                <img src="http://yadayadacreative.com/projects/jfritz.png" alt=""/>
                                 <h5>John F.</h5>
                                 <h6>Lead Engineer</h6>
                                 <p>Lorem ipsum some really quick, short description here.</p>
                             </li>
                             <li>
-                                <img src="http://yadayadacreative.com/CDA/yara.png" alt=""/>
+                                <img src="http://yadayadacreative.com/projects/yara.png" alt=""/>
                                 <h5>Yara TP</h5>
                                 <h6>Lead Engineer</h6>
-                                <p>Lorem ipsum some really quick, short description here.</p>
+                                <p>Programmer | Traveler | Little Sister | Geographically Confused | Dog Parent.</p>
                             </li>
                             <li>
-                                <img src="http://yadayadacreative.com/CDA/aman.png" alt=""/>
+                                <img src="http://yadayadacreative.com/projects/aman.png" alt=""/>
                                 <h5>Aman T.</h5>
                                 <h6>Lead Engineer</h6>
                                 <p>Lorem ipsum some really quick, short description here.</p>
                             </li>
                             <li>
-                                <img src="http://yadayadacreative.com/CDA/graham.png" alt=""/>
+                                <img src="http://yadayadacreative.com/projects/graham.png" alt=""/>
                                 <h5>Graham W.</h5>
                                 <h6>Lead Engineer</h6>
                                 <p>Lorem ipsum some really quick, short description here.</p>
