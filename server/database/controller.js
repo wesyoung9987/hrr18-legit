@@ -393,14 +393,10 @@ module.exports = {
                   joinTableAttributes: []
                 })
                 .then(function (students) {
-                  // if (students) {
-                  //   students = students.filter(function (student) {
-                  //     return !aggregate.students.map(function (record) {
-                  //       return record.id;
-                  //     }).includes(student.id);
-                  //   });
-                  //   aggregate.students = aggregate.students.concat(students);
-                  // }
+
+                  // wouldn't it be nice to filter out duplicate students
+                  // from multiple classes?
+
                   aggregate.students = aggregate.students.concat(students);
                   if (count === sections.length - 1) {
 // OK -------------------------------------------------------------------------
