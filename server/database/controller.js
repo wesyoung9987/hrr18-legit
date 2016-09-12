@@ -393,14 +393,15 @@ module.exports = {
                   joinTableAttributes: []
                 })
                 .then(function (students) {
-                  if (students.length) {
-                    students = students.filter(function (student) {
-                      return !aggregate.students.map(function (record) {
-                        return record.id;
-                      }).includes(student.id);
-                    });
-                    aggregate.students = aggregate.students.concat(students);
-                  }
+                  // if (students) {
+                  //   students = students.filter(function (student) {
+                  //     return !aggregate.students.map(function (record) {
+                  //       return record.id;
+                  //     }).includes(student.id);
+                  //   });
+                  //   aggregate.students = aggregate.students.concat(students);
+                  // }
+                  aggregate.students = aggregate.students.concat(students);
                   if (count === sections.length - 1) {
 // OK -------------------------------------------------------------------------
                     res.json(aggregate);
