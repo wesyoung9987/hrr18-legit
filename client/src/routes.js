@@ -11,6 +11,7 @@ import Welcome from './components/auth/welcome/welcome_component.jsx';
 import Login from './components/auth/login/login_component.jsx';
 import Signup from './components/auth/signup/signup_component.jsx';
 import Dashboard from './components/dashboard/mainDashboard/dashboardCentral_component.jsx';
+import AdminDashboard from './components/dashboard/adminDashboard/admindashboardCentral_component.jsx';
 import DashboardClass from './components/dashboard/classDashboard/dashboardClass_component.jsx';
 import DashboardStudent from './components/dashboard/studentDashboard/dashboardStudent_component.jsx';
 import DashboardAssignment from './components/dashboard/assignmentDashboard/dashboardAssignment_component.jsx';
@@ -25,6 +26,7 @@ export default (
         <Route path="welcome" component={Welcome} />
         <Route path="signin" component={Login} />
         <Route path="signup" component={Signup} />
+        <Route path="admin" component={AdminDashboard} />
         <Route path="home" component={Dashboard} />
         <Route path="class" component={DashboardClass} />
         <Route path="student" component={DashboardStudent} />

@@ -31,6 +31,15 @@ function receiveLogin(token) {
   }
 }
 
+function receiveAdminLogin(token) {
+  return {
+    type: types.ADMIN_LOGIN_SUCCESS,
+    isFetching: false,
+    isAuthenticated: true,
+    isAdmin: true,
+    payload: token
+  }
+}
 // Called if error signing in, info sent to reducers.
 // Reducer waiting for this action type is in reducers/auth_reducer.js
 function loginError(message) {
@@ -52,10 +61,11 @@ export function loginUser(creds) {
             localStorage.setItem('token', response.data);
             localStorage.setItem('userid', response.data.userid);
             // call receiveLogin so user data gets sent to reducers to create new state
-
-            if(response.data.admin){
+            // hard coded admin for now
+            // replace with response.data.admin later
+            if(true){
               // if user is admin
-              dispatch(receiveLogin(response.data));
+              dispatch(receiveAdminLogin(response.data));
               // redircet user to the main dashboard
               browserHistory.push('/admin')
             } else {

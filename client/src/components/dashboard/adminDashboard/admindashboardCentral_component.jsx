@@ -12,7 +12,7 @@ import DashboardLeftCol from './M_dashboardLeftCol.jsx';
 import DashboardRightCol from './M_dashboardRightCol.jsx';
 
 
-class Dashboard extends React.Component {
+class AdminDashboard extends React.Component {
     constructor(props){
         super(props);
 
@@ -20,6 +20,7 @@ class Dashboard extends React.Component {
             // getting access to isAuthenticated through the
             // mapStateToProps method at the bottom of doc
             isAuthenticated: this.props.isAuthenticated,
+            isAdmin: this.props.isAdmin,
             classes: [],
             students: [],
             first: '',
@@ -118,8 +119,9 @@ function mapStateToProps(state) {
     console.log("REDUX STATE", state);
     return {
         isAuthenticated: state.auth.isAuthenticated,
-        token: state.auth.token
+        token: state.auth.token,
+        isAdmin: state.auth.isAdmin
     }
 }
 
-export default connect(mapStateToProps)(Dashboard);
+export default connect(mapStateToProps)(AdminDashboard);
