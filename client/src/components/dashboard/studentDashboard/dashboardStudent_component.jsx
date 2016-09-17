@@ -1,4 +1,4 @@
-//Did not get to linking up this dashboard 
+//Did not get to linking up this dashboard
 //React
 import React, { Component, PropTypes, ContextTypes } from 'react';
 import { browserHistory } from 'react-router'
@@ -51,6 +51,7 @@ class Dashboard extends React.Component {
     }
 
     render() {
+        console.log("Student State", this.state);
 
                 return (
                     <div>

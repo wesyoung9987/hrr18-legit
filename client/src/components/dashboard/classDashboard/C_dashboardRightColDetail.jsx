@@ -10,15 +10,12 @@ class DashboardRightColDetail extends React.Component {
     if (this.props.currentstudent.data.currentstudent.first) {
       return (
         <div className='studentDetails'>
-           {console.log(this.props.currentstudent.data.currentstudent.first)}
+           {console.log(this.props.currentstudent)}
           <h1> {this.props.currentstudent.data.currentstudent.first} {this.props.currentstudent.data.currentstudent.last} </h1>
-             {this.props.currentstudent.data.scores.map(function (assignment) {
-               return <div className='dashboardLeftColItem clearfix'><span>
-               Assignment Name: {assignment.name}
+             {this.props.currentstudent.data.assignments.map(function (assignment) {
+               return <div key={assignment.id} className='dashboardLeftColItem clearfix'><span>
+               Assignment: {assignment.name}
                  <br />
-               Sudent Score: {assignment.Student_Outcomes.score}
-                 <br />
-                  Max Score: {assignment.maxScore}
                </span> </div>
              })}
         </div>
