@@ -9,7 +9,7 @@ import { browserHistory } from 'react-router'
 import * as types from '../constants/ActionTypes';
 
 /////////////// LOGIN ////////////////
-// Called before api request, info sent to reducers. 
+// Called before api request, info sent to reducers.
 // Reducer waiting for this action type is in reducers/auth_reducer.js
 function requestLogin(creds) {
   return {
@@ -31,6 +31,15 @@ function receiveLogin(token) {
   }
 }
 
+function receiveAdminLogin(token) {
+  return {
+    type: types.ADMIN_LOGIN_SUCCESS,
+    isFetching: false,
+    isAuthenticated: true,
+    isAdmin: true,
+    payload: token
+  }
+}
 // Called if error signing in, info sent to reducers.
 // Reducer waiting for this action type is in reducers/auth_reducer.js
 function loginError(message) {
@@ -52,9 +61,20 @@ export function loginUser(creds) {
             localStorage.setItem('token', response.data);
             localStorage.setItem('userid', response.data.userid);
             // call receiveLogin so user data gets sent to reducers to create new state
-            dispatch(receiveLogin(response.data));
-            // redircet user to the main dashboard
-            browserHistory.push('/home')
+            // hard coded admin for now
+            // replace with response.data.admin later
+            if(true){
+              // if user is admin
+              dispatch(receiveAdminLogin(response.data));
+              // redircet user to the main dashboard
+              browserHistory.push('/admin')
+            } else {
+              // if user is teacher
+              dispatch(receiveLogin(response.data));
+              // redircet user to the main dashboard
+              browserHistory.push('/home')
+
+            }
         })
         .catch(function(response){
             dispatch(loginError(response));
@@ -65,7 +85,7 @@ export function loginUser(creds) {
 
 
 /////////////// SIGNUP ////////////////
-// Called before api request, info sent to reducers. 
+// Called before api request, info sent to reducers.
 // Reducer waiting for this action type is in reducers/auth_reducer.js
 function requestSignup(info) {
   return {
@@ -128,7 +148,7 @@ export function signupUser(info) {
 
 
 /////////////// LOGOUT ////////////////
-// Called before logout request, info sent to reducers. 
+// Called before logout request, info sent to reducers.
 // Reducer waiting for this action type is in reducers/auth_reducer.js
 function requestLogout() {
   return {
@@ -151,7 +171,7 @@ function receiveLogout() {
 export function logoutUser() {
   return dispatch => {
     dispatch(requestLogout())
-    // clear out local storage 
+    // clear out local storage
     localStorage.removeItem('token')
     localStorage.removeItem('userid')
     // redircet user to login

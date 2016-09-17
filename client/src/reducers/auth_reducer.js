@@ -2,10 +2,10 @@
 
 //Action Types
 import {
-  LOGIN_SUCCESS, LOGIN_REQUEST, LOGIN_FAILURE, LOGOUT_SUCCESS, SIGNUP_REQUEST, SIGNUP_SUCCESS, SIGNUP_FAILURE, LOGOUT_REQUEST
+  LOGIN_SUCCESS, LOGIN_REQUEST, LOGIN_FAILURE, LOGOUT_SUCCESS, SIGNUP_REQUEST, SIGNUP_SUCCESS, SIGNUP_FAILURE, LOGOUT_REQUEST, ADMIN_LOGIN_SUCCESS
 } from '../constants/ActionTypes.js'
 
-// The starting state sets authentication based on a token being in local storage. 
+// The starting state sets authentication based on a token being in local storage.
 // This should mean the user does not have to sign back in every single time the page refreshes or if they come
 // back to the page after already loggin in.
 // Ideally, we would also want a util to check if the token is expired.
@@ -28,6 +28,14 @@ export default function authReducer(state = {
         isFetching: false,
         isAuthenticated: true,
         token: action.payload
+      })
+    case ADMIN_LOGIN_SUCCESS:
+      console.log("ADMIN LOGIN SUCCEEDED");
+      return Object.assign({}, state, {
+        isFetching: false,
+        isAuthenticated: true,
+        token: action.payload,
+        isAdmin: true
       })
     case LOGIN_FAILURE:
       console.log("LOGIN FAILED");
@@ -70,7 +78,7 @@ export default function authReducer(state = {
         isAuthenticated: false,
         token: null
       })
-    
+
     default:
       return state
   }

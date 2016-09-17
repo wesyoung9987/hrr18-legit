@@ -50,14 +50,14 @@ class LoginForm extends React.Component {
     render() {
         return (
             <form onSubmit={this.onFormSubmit.bind(this)}>
-                <input 
-                    type="text" 
+                <input
+                    type="text"
                     placeholder="Username..."
                     value={this.state.email}
                     onChange={this.onEmailChange.bind(this)}
                 />
-                <input 
-                    type="password" 
+                <input
+                    type="password"
                     placeholder="Password..."
                     value={this.state.password}
                     onChange={this.onPasswordChange.bind(this)}
@@ -68,7 +68,7 @@ class LoginForm extends React.Component {
             </form>
         );
     }
-    
+
 };
 
 //Gives us access to our action, loginUser, as this.props.loginUser within container
