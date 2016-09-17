@@ -17,9 +17,7 @@ class StudentForm extends React.Component {
         let classId = localStorage.getItem('classId')
 
         this.state = {
-            first: '',
-            last: '',
-            classId: classId
+            score: ''
         };
     }
 
@@ -36,7 +34,7 @@ class StudentForm extends React.Component {
         event.preventDefault();
         // Call our action, addStudent, which will send a POST request to the api
         // see actions/addStudent.js
-        this.props.addScore(this.state);
+        addScore(this.state);
         //Reset our form fields to empty
         this.setState({
             score: ''
