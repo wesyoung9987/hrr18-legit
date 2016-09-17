@@ -5,7 +5,7 @@ import React from 'react';
 //Redux
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { addStudent } from '../../actions/addStudent.js';
+import { addScore } from '../../actions/addStudentScore.js';
 
 
 class StudentForm extends React.Component {
@@ -23,16 +23,10 @@ class StudentForm extends React.Component {
         };
     }
 
-    onFirstNameChange(event){
+    onScoreChange(event){
         //As user types in name input, update the state
         //Once state updates the input value is updated to match the state
-        this.setState({ first: event.target.value })
-    }
-
-    onLastNameChange(event){
-        //As user types in last name input, update the state
-        //Once state updates the input value is updated to match the state
-        this.setState({ last: event.target.value })
+        this.setState({ score: event.target.value })
     }
 
     onFormSubmit(event){
@@ -42,37 +36,26 @@ class StudentForm extends React.Component {
         event.preventDefault();
         // Call our action, addStudent, which will send a POST request to the api
         // see actions/addStudent.js
-        this.props.addStudent(this.state);
+        this.props.addScore(this.state);
         //Reset our form fields to empty
         this.setState({
-            first: '',
-            last: '',
+            score: ''
         })
     }
 
     render(){
         return (
             <div className="formWrapper">
-                <h3>Student</h3>
+                <h3>Student Score</h3>
                 <form  onSubmit={this.onFormSubmit.bind(this)}>
-                    <label htmlFor="first">First Name</label>
+                    <label htmlFor="score">Score on {localStorage.getItem('assignmentName')} by {localStorage.getItem('studentName')}:</label>
                     <input
-                        name="first"
-                        type="text"
-                        placeholder="First Name..."
-                        value={this.state.first}
-                        onChange={this.onFirstNameChange.bind(this)}
+                        name="score"
+                        type="number"
+                        placeholder="Score..."
+                        onChange={this.onScoreChange.bind(this)}
                     />
-                    <label htmlFor="last">Last Name</label>
-                    <input
-                        name="last"
-                        type="text"
-                        placeholder="Last Name..."
-                        value={this.state.last}
-                        onChange={this.onLastNameChange.bind(this)}
-                    />
-
-                    <button>Save Student</button>
+                    <button>Save Score</button>
                 </form>
             </div>
         );
@@ -81,7 +64,7 @@ class StudentForm extends React.Component {
 
 // gives us access to this.props.addUser within component
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ addStudent }, dispatch);
+    return bindActionCreators({ addScore }, dispatch);
 }
 
 export default connect(null, mapDispatchToProps)(StudentForm);
