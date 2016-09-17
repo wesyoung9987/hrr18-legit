@@ -8,6 +8,7 @@ var User = db.define('User', {
   password: Sequelize.STRING,
   first: Sequelize.STRING,
   last: Sequelize.STRING,
+  isAdmin: Sequelize.STRING,
   schoolStartDate: {type: Sequelize.DATE, defaultValue: Date.now()},
   schoolEndDate: {type: Sequelize.DATE, defaultValue: Date.now()}
 },

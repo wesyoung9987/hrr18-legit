@@ -18,5 +18,5 @@ var sequelize = new Sequelize(connection,
     }
   }
 );
-
+//HEROKU_POSTGRESQL_BLACK_URL
 module.exports = sequelize;

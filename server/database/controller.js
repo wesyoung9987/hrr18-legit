@@ -110,6 +110,17 @@ Assignment.belongsToMany(Student, {
 
 module.exports = {
 
+  allTeachers: function(req, res){
+    User.findAll({
+      where: {
+        isAdmin: 'admin'
+      }
+    })
+    .then(function(teachers){
+      return teachers;
+    })
+  },
+
 // ============================================================================
 //
 // POST ENROL:  associate students with sections; creates a new record in the
