@@ -4,12 +4,12 @@ if (process.env.NODE_ENV !== 'production') {
 
   // config.js is ignored by Git
   // just for heroku
-  var config = require('../../config.js');
+  // var config = require('../../config.js');
 
 }
 
-var connection = process.env.DATABASE_URL || config.connection;
-// var connection = process.env.DATABASE_URL;
+// var connection = process.env.DATABASE_URL || config.connection;
+var connection = process.env.DATABASE_URL;
 
 var sequelize = new Sequelize(connection,
   {
