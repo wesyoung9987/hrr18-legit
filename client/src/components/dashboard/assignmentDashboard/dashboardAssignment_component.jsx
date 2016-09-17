@@ -16,27 +16,42 @@ class DashboardAssignment extends React.Component {
       this.state = {};
     }
     render () {
-        return(<h1>Hello World</h1>)
+        return(
+        <div>
+            <Header />
+            <main>
+                <div className="dashboardWrapper">
+                    <DashboardSummary />
+                    <div className="dashboardCols">
+                        <div>
+                            Notes
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+    )
     }
 }
 
 // const DashboardAssignment = () => {
-//     return (
-//         <div>
-//             <Header />
-//             <main>
-//                 <div className="dashboardWrapper">
-//                     <DashboardSummary />
-//                     <div className="dashboardCols">
-//                         <div>
-//                             Notes
-//                         </div>
-//                     </div>
-//                 </div>
-//             </main>
-//         </div>
+    // return (
+    //     <div>
+    //         <Header />
+    //         <main>
+    //             <div className="dashboardWrapper">
+    //                 <DashboardSummary />
+    //                 <div className="dashboardCols">
+    //                     <div>
+    //                         Notes
+    //                     </div>
+    //                 </div>
+    //             </div>
+    //         </main>
+    //     </div>
 
-//     );
+    // );
 // };
 
 export default DashboardAssignment;
