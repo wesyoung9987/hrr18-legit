@@ -1,23 +1,18 @@
 // Holds list of students
 //React
 import React from 'react';
+import d3 from 'd3'
+var BarChart = require("react-chartjs").Bar;
 
 //Components
 import DashboardRightColItem from './M_dashboardRightColItem.jsx';
+var data = {};
 
-
-const DashboardRightCol = ({students}) => {
+const DashboardRightCol = (props) => {
     return (
-        <div className="dashboardRightCol">
-            <ul>
-                {students.map((student) =>
-                    <DashboardRightColItem
-                        key={student.id}
-                        student={student}
-                    />
-                )}
-            </ul>
-        </div>
+
+        <BarChart data={props.chartData}/>
+
     );
 };
 

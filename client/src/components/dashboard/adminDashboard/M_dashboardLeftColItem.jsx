@@ -11,7 +11,9 @@ class DashboardLeftColItem extends React.Component {
     constructor(props){
         super(props)
     }
+    //getTeacher(id){
 
+    // }
     getClass(id){
         //store class id in local storage so that it can be used
         //in the class dashboard to make api call to get class details

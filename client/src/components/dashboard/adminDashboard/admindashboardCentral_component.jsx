@@ -23,11 +23,23 @@ class AdminDashboard extends React.Component {
             isAdmin: this.props.isAdmin,
             classes: [],
             students: [],
+            teachers: ['smith', 'jones', 'robot'],
             first: '',
             last: ' ',
             numberClasses: 0,
             numberStudents: 0,
-            daysLeft: 0
+            daysLeft: 0,
+            chartData: {
+                            labels: ['smith', 'jones', 'robot'],
+                            datasets: [
+                                {
+                                    label: "My First dataset",
+
+                                    borderWidth: 1,
+                                    data: [65, 59, 80],
+                                }
+                            ]
+                        }
         }
     }
 
@@ -88,12 +100,15 @@ class AdminDashboard extends React.Component {
                                 />
                                 <div className="dashboardCols clearfix">
                                     <div>
-                                        <h3><a href="/classform"><i className="fa fa-plus" aria-hidden="true"></i></a> Classes </h3>
-                                        <DashboardLeftCol classes={this.state.classes} />
+                                        <h3>{/*<a href="/classform"><i className="fa fa-plus" aria-hidden="true"></i></a>*/} Teachers </h3>
+                                        <DashboardLeftCol classes={this.state.teachers} />
                                     </div>
                                     <div>
                                         <h3>Students</h3>
-                                        <DashboardRightCol students={this.state.students} />
+                                        <DashboardRightCol students={this.state.
+                                            students}
+                                            chartData={this.state.chartData}
+                                        />
                                     </div>
                                 </div>
                             </div>
