@@ -1,13 +1,18 @@
 // Will be the indivisual class, student, or assignment
 import React from 'react'
+
+import { browserHistory } from 'react-router'
+
 class DashboardLeftColItem extends React.Component {
   constructor (props) {
     super(props)
     this.updateCurrentUser = this.updateCurrentUser.bind(this)
   }
   updateCurrentUser (props) {
+    console.log("STUDENT PROPS", this.props);
     const classid = localStorage.getItem('classId')
     this.props.func(this.props.data, classid)
+    //browserHistory.push('/student');
   }
   render () {
     return (

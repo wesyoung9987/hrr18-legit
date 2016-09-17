@@ -12,7 +12,7 @@ class DashboardLeftCol extends React.Component {
       <div className='dashboardLeftCol'>
         <ul>
     {this.props.data.students.map(function (data) {
-      return <DashboardLeftColItem data={data} func={that.props.func} />
+      return <DashboardLeftColItem key={data.id} data={data} func={that.props.func} />
     })}
         </ul>
       </div>
