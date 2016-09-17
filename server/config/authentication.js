@@ -4,7 +4,8 @@ var User = require('../database/models/user.js');
 if (process.env.NODE_ENV !== 'production') {
 
   // config.js is ignored by Git
-  var config = require('../../config.js');
+  // var config = require('../../config.js');
+  var connection = process.env.DATABASE_URL
 }
 // Using Jason web Tokens to create tokens for user.
 
