@@ -21,7 +21,7 @@ class SignUpForm extends React.Component {
             last: '',
             schoolStart: '',
             schoolEnd: '',
-            isAdmin: ''
+            isAdmin: 'teacher'
         };
     }
 
@@ -103,7 +103,7 @@ class SignUpForm extends React.Component {
                 value={this.state.isAdmin}
                 onChange={this.onAdminChange.bind(this)}
                 className="form-control">
-                    <option value="teacher">Teacher</option>
+                    <option value="teacher" selected>Teacher</option>
                     <option value="admin">Administrator</option>
                 </select>
                 <label >School Start Date</label>
