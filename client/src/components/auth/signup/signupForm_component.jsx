@@ -91,6 +91,11 @@ class SignUpForm extends React.Component {
                     value={this.state.last}
                     onChange={this.onLastNameChange.bind(this)}
                 />
+                <label >Position</label>
+                <select value={this.state.idAdmin} className="form-control">
+                    <option value="teacher">Teacher</option>
+                    <option value="admin">Administrator</option>
+                </select>
                 <label >School Start Date</label>
                 <input
                     type="date"
