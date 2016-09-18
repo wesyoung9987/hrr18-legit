@@ -33,9 +33,11 @@ module.exports = function (app, express) {
 // ============================================================================
 //
 // GET all users where isAdmin === ''
-//
+// GEt all classes and a random number of students
 
   app.get('/admin/leet/', Controller.allTeachers);
+  app.get('/admin/leetT/', Controller.allClasses);
+
 
 //
 // ============================================================================

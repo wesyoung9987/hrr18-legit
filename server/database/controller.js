@@ -115,6 +115,24 @@ module.exports = {
 // POST ENROL:  associate students with sections; creates a new record in the
 //              table 'Student_Roster'
 //
+  allClasses: function(req,res){
+    Section.findAll({})
+    .then(function(cls){
+      var CLS = {};
+      CLS.classes = [];
+      CLS.numStd = [];
+      cls.forEach(function(item){
+        CLS.classes = item.name;
+        // this needs to be not hardcoded :D
+        CLS.numStd = Math.floor((Math.random() * 10) + 1);;
+      });
+      // console.log(CLS);
+      res.send(CLS);
+    })
+    .catch(function (err) {
+        throw err;
+      });
+  },
 
   allTeachers: function(req, res){
     // console.log(User);
@@ -139,7 +157,7 @@ module.exports = {
     }).then(function(asd){
       var resP = {};
       resP.teachersNotAdmin = asd;
-          console.log(resP);
+          console.log(this);
           // return asd;
           res.send(resP);
         })
