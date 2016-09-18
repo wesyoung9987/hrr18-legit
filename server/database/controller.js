@@ -117,17 +117,34 @@ module.exports = {
 //
 
   allTeachers: function(req, res){
+    // console.log(User);
     User.findAll({
-      where: {
-        isAdmin: ''
-      }
+      // attributes: ["id"]
+      // where: {
+      //   isAdmin: 'null'
+      // }
     })
     .then(function(teachers){
-      return teachers;
-    })
+      // teahers[0].dataValues.isAdmin
+      var exmp = [];
+      teachers.forEach(function(item){
+        if(item.dataValues.isAdmin !== "admin"){
+          // console.log(item.dataValues.first + ' ' + item.dataValues.isAdmin);
+          exmp.push(item.dataValues.id);
+        }
+      });
+      return exmp;
+      // return res(teachers);
+      // res.sendStatus(200);
+    }).then(function(asd){
+          console.log(asd);
+          // return asd;
+          res.send(asd);
+        })
     .catch(function (err) {
       throw err;
     });
+    // res.sendStatus(200);
   },
 
   enrol: function (req, res) {

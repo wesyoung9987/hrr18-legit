@@ -32,6 +32,14 @@ module.exports = function (app, express) {
 
 // ============================================================================
 //
+// GET all users where isAdmin === ''
+//
+
+  app.get('/admin/leet/', Controller.allTeachers);
+
+//
+// ============================================================================
+//
 // GET :model of :id with url parameters; no JSON required
 //
 
