@@ -119,7 +119,7 @@ module.exports = {
   allTeachers: function(req, res){
     User.findAll({
       where: {
-        isAdmin: 'teacher'
+        isAdmin: ''
       }
     })
     .then(function(teachers){
