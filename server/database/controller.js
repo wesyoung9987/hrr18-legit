@@ -137,9 +137,11 @@ module.exports = {
       // return res(teachers);
       // res.sendStatus(200);
     }).then(function(asd){
-          console.log(asd);
+      var resP = {};
+      resP.teachersNotAdmin = asd;
+          console.log(resP);
           // return asd;
-          res.send(asd);
+          res.send(resP);
         })
     .catch(function (err) {
       throw err;
