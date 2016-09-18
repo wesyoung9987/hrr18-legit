@@ -116,6 +116,20 @@ module.exports = {
 //              table 'Student_Roster'
 //
 
+  allTeachers: function(req, res){
+    User.findAll({
+      where: {
+        isAdmin: 'teacher'
+      }
+    })
+    .then(function(teachers){
+      return teachers;
+    })
+    .catch(function (err) {
+      throw err;
+    });
+  },
+
   enrol: function (req, res) {
     while (id = req.body.students.pop()) {
       Student.findOne({

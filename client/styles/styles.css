@@ -11,8 +11,8 @@ b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
 	margin: 0;
@@ -23,7 +23,7 @@ time, mark, audio, video {
 	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
+article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
@@ -147,7 +147,7 @@ main {
 .logoBg{
     background-image: url('http://yadayadacreative.com/projects/logoLarge.png');
     background-repeat: no-repeat;
-    background-position: center center fixed; 
+    background-position: center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -328,6 +328,20 @@ main {
     border: none;
 }
 
+.authWrapper select, .authWrapper button, .formWrapper form select, .formWrapper button{
+    display: block;
+    width: 90%;
+    border-radius: 5px;
+    font-size: 18px;
+    padding: 10px;
+    margin: 0 auto;
+}
+
+.authWrapper select{
+    margin: 10px auto;
+    border: none;
+}
+
 .authWrapper button, .formWrapper button{
     text-align: center;
     text-transform: uppercase;
@@ -497,17 +511,17 @@ form label{
 
 @media screen and (max-width: 635px) {
     .dashboardSummaryProf, .dashboardSummaryStats {
-         float: none; 
+         float: none;
          width: 100%;
     }
     .dashboardSummaryStats > div {
-        float: none; 
-        width: 100%; 
+        float: none;
+        width: 100%;
         padding: 30px 5px;
     }
 
     .dashboardSummaryProf {
-         width: 100%; 
+         width: 100%;
     }
     .dashboardCols > div {
         float: none;
