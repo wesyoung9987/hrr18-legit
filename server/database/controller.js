@@ -148,6 +148,7 @@ module.exports = {
       teachers.forEach(function(item){
         if(item.dataValues.isAdmin !== "admin"){
           // console.log(item.dataValues.first + ' ' + item.dataValues.isAdmin);
+          // here we could use first + ' ' + last
           exmp.push(item.dataValues.id);
         }
       });
