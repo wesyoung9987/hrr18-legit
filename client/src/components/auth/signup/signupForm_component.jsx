@@ -20,7 +20,8 @@ class SignUpForm extends React.Component {
             first: '',
             last: '',
             schoolStart: '',
-            schoolEnd: ''
+            schoolEnd: '',
+            isAdmin: ''
         };
     }
 
@@ -34,6 +35,12 @@ class SignUpForm extends React.Component {
         //As user types in last name input, update the state
         //Once state updates the input value is updated to match the state
         this.setState({ last: event.target.value })
+    }
+
+    onAdminChange(event){
+        //As user types in school start input, update the state
+        //Once state updates the input value is updated to match the state
+        this.setState({ isAdmin: event.target.value })
     }
 
     onSchoolStartChange(event){
@@ -92,7 +99,10 @@ class SignUpForm extends React.Component {
                     onChange={this.onLastNameChange.bind(this)}
                 />
                 <label >Position</label>
-                <select value={this.state.idAdmin} className="form-control">
+                <select
+                value={this.state.isAdmin}
+                onChange={this.onAdminChange.bind(this)}
+                className="form-control">
                     <option value="teacher">Teacher</option>
                     <option value="admin">Administrator</option>
                 </select>
