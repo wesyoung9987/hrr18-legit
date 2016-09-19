@@ -128,7 +128,8 @@ export function signupUser(info) {
       first: info.first,
       last: info.last,
       schoolStartDate: info.schoolStart,
-      schoolEndDate: info.schoolEnd
+      schoolEndDate: info.schoolEnd,
+      isAdmin: info.isAdmin
   })
     .then(function (response) {
         // storing userid and token in local storage

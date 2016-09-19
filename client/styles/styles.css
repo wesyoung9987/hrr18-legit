@@ -328,6 +328,20 @@ main {
     border: none;
 }
 
+.authWrapper select, .authWrapper button, .formWrapper form select, .formWrapper button{
+    display: block;
+    width: 90%;
+    border-radius: 5px;
+    font-size: 18px;
+    padding: 10px;
+    margin: 0 auto;
+}
+
+.authWrapper select{
+    margin: 10px auto;
+    border: none;
+}
+
 .authWrapper button, .formWrapper button{
     text-align: center;
     text-transform: uppercase;

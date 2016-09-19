@@ -1,5 +1,6 @@
 var jwt = require('jwt-simple');
 var User = require('../database/models/user.js');
+var Controller = require('../database/controller.js');
 
 if (process.env.NODE_ENV !== 'production') {
 
@@ -23,7 +24,13 @@ module.exports = {
   },
 
   signin: function (req, res) {
-    res.send({token: tokenForUser(req.user), userid:req.user.id });
+    if(req.isAdmin === 'admin'){
+      // query all non admin users
+      var teachers = Controller.allTeachers();
+      res.send({token: tokenForUser(req.user), userid:req.user.id, teachers: '5' });
+      return;
+    }
+    res.send({token: tokenForUser(req.user), userid:req.user.id, teachers: req.user.isAdmin });
   },
 
    signup: function(req, res, next) {
@@ -36,15 +43,21 @@ module.exports = {
       password: password,
       first: req.body.first,
       last: req.body.last,
+      isAdmin: req.body.isAdmin,
       schoolStartDate: req.body.schoolStartDate,
       schoolEndDate: req.body.schoolEndDate
 
       // }
     }).then(function (user) {
-
+      if(req.isAdmin === 'admin'){
+        // query all non admin users
+        var teachers = Controller.allTeachers();
+        res.json({token: tokenForUser(user), userid: user.id, teachers: req.user.isAdmin });
+        return;
+      }
       //signin user?
       // sending back jwt to user
-      res.json({token: tokenForUser(user), userid: user.id });
+      res.json({token: tokenForUser(user), userid: user.id, teachers: '5' });
       // redirect to home?
     }).catch(function (err) {
       console.log(err);

@@ -115,6 +115,58 @@ module.exports = {
 // POST ENROL:  associate students with sections; creates a new record in the
 //              table 'Student_Roster'
 //
+  allClasses: function(req,res){
+    Section.findAll({})
+    .then(function(cls){
+      var CLS = {};
+      CLS.classes = [];
+      CLS.numStudents = [];
+      cls.forEach(function(item){
+        CLS.classes.push(item.name);
+        // this needs to be not hardcoded :D
+        CLS.numStudents.push(Math.floor((Math.random() * 10) + 1));
+      });
+      // console.log(CLS);
+      res.send(CLS);
+    })
+    .catch(function (err) {
+        throw err;
+      });
+  },
+
+  allTeachers: function(req, res){
+    // console.log(User);
+    User.findAll({
+      // attributes: ["id"]
+      // where: {
+      //   isAdmin: 'null'
+      // }
+    })
+    .then(function(teachers){
+      // teahers[0].dataValues.isAdmin
+      var exmp = [];
+      teachers.forEach(function(item){
+        if(item.dataValues.isAdmin !== "admin"){
+          // console.log(item.dataValues.first + ' ' + item.dataValues.isAdmin);
+          // here we could use first + ' ' + last
+          exmp.push(item.dataValues.id);
+        }
+      });
+      return exmp;
+      // return res(teachers);
+      // res.sendStatus(200);
+    }).then(function(asd){
+      var resP = {};
+      resP.teachersNotAdmin = asd;
+          console.log(this);
+          // return asd;
+          res.send(resP);
+        })
+    .catch(function (err) {
+      throw err;
+    });
+    // res.sendStatus(200);
+  },
 
   enrol: function (req, res) {
     while (id = req.body.students.pop()) {
