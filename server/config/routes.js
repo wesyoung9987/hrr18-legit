@@ -38,7 +38,8 @@ module.exports = function (app, express) {
   app.get('/admin/leet/', Controller.allTeachers);
   app.get('/admin/leetT/', Controller.allClasses);
   app.get('/studentscores', Controller.allStudentScores);
-  app.get('/teachers/students', Controller.teachersStudents)
+  app.get('/teachers/students', Controller.teachersStudents);
+  app.get('/teachers/students/scores', Controller.teachersStudentsScores);
 
 
 //
