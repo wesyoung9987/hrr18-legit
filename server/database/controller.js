@@ -187,43 +187,86 @@ module.exports = {
         .then(function(rosters){
           Student.findAll({})
           .then(function(allstudents){
-            var list = teachers.map(function(teacher){
-              var obj = {};
-              obj.first = teacher.first;
-              obj.last = teacher.last;
-              sections.forEach(function(section){
-                if(section.UserId === teacher.id){
-                  obj.id = section.id;
-                }
-              })
-              return obj;
-            })
-            var list2 = list.map(function(item){
-              var obj = {};
-              obj.first = item.first;
-              obj.last = item.last;
-              obj.ids = []
-              rosters.forEach(function(roster){
-                if(roster.SectionId === item.id){
-                  obj.ids.push(roster.StudentId);
-                }
-              })
-              return obj;
-            })
-            var list3 = list2.map(function(item){
-              var obj = {};
-              obj.name = item.first + ' ' + item.last;
-              obj.students = [];
-              allstudents.forEach(function(student){
-                item.ids.forEach(function(id){
-                  if(student.id === id){
-                    obj.students.push(student.first + " " + student.last);
-                  }
+            Student_Outcomes.findAll({})
+            .then(function(outcomes){
+              Assignment.findAll({})
+              .then(function(assignments){
+
+                var list = teachers.map(function(teacher){
+                  var obj = {};
+                  obj.first = teacher.first;
+                  obj.last = teacher.last;
+                  sections.forEach(function(section){
+                    if(section.UserId === teacher.id){
+                      obj.id = section.id;
+                    }
+                  })
+                  return obj;
                 })
+                var list2 = list.map(function(item){
+                  var obj = {};
+                  obj.first = item.first;
+                  obj.last = item.last;
+                  obj.ids = []
+                  rosters.forEach(function(roster){
+                    if(roster.SectionId === item.id){
+                      obj.ids.push(roster.StudentId);
+                    }
+                  })
+                  return obj;
+                })
+                var list3 = list2.map(function(item){
+                  var obj = {};
+                  obj.name = item.first + ' ' + item.last;
+                  obj.students = [];
+                  allstudents.forEach(function(student){
+                    item.ids.forEach(function(id){
+                      if(student.id === id){
+                        obj.students.push({name: student.first + " " + student.last, id: student.id});
+                      }
+                    })
+                  })
+                  return obj;
+                })
+                var list4 = list3.map(function(item){
+                  var aobj = {};
+                  aobj.name = item.name;
+                  aobj.students;
+
+
+                    var studentOutcomes = item.students.map(function(student){
+                      var obj = {};
+                      obj.name = student.name;
+
+                      obj.scores = [];
+                      outcomes.forEach(function(outcome){
+                        if(outcome.StudentId === student.id){
+                          obj.scores.push([outcome.score, outcome.AssignmentId]);
+                        }
+                      })
+                      return obj;
+                    })
+                    var studentOutcomes2 = studentOutcomes.map(function(student2){
+                      var obj2 = {};
+                      obj2.name = student2.name;
+                      obj2.scores = [];
+                      assignments.forEach(function(assignment){
+                          student2.scores.forEach(function(score){
+                            if(score[1] === assignment.id){
+                              var percent = Math.floor(score[0] / assignment.maxScore * 100);
+                              obj2.scores.push(percent);
+                            }
+                          })
+                      })
+                      return obj2;
+                    })
+                    aobj.students = studentOutcomes2;
+
+                  return aobj;
+                })
+                res.send(list4);
               })
-              return obj;
             })
-            res.send(list3);
           })
         })
       })
