@@ -11,9 +11,7 @@ class DashboardLeftColItem extends React.Component {
     constructor(props){
         super(props)
     }
-    //getTeacher(id){
 
-    // }
     getClass(id){
         //store class id in local storage so that it can be used
         //in the class dashboard to make api call to get class details
@@ -22,9 +20,13 @@ class DashboardLeftColItem extends React.Component {
         browserHistory.push('/class');
     }
 
+    displayTeachersAndStudents(){
+        console.log('clicked')
+    }
+
     render(){
         return (
-            <a onClick={this.getClass.bind(this, this.props.classDetails.id)}>
+            <a onClick={this.displayTeachersAndStudents}>
                 <div className="dashboardLeftColItem clearfix">
                     <div>
                         <h6>Title</h6>

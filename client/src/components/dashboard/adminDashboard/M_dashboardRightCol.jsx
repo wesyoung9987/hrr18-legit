@@ -1,20 +1,50 @@
 // Holds list of students
 //React
 import React from 'react';
-import d3 from 'd3'
+
 var BarChart = require("react-chartjs").Bar;
+var LineChart = require("react-chartjs").Line;
+var RadarChart = require("react-chartjs").Radar;
 
 //Components
 import DashboardRightColItem from './M_dashboardRightColItem.jsx';
-var data = {};
+
+
 
 const DashboardRightCol = (props) => {
+    var options = {
+      // animationSteps : 50,
+      //  tooltipYPadding : 16,
+      //  tooltipCornerRadius : 0,
+      //  tooltipTitleFontStyle : 'normal',
+      //  tooltipFillColor : 'rgba(0,160,0,0.8)',
+      //  // animationEasing : 'easeOut',
+      //  scaleLineColor : 'black',
+      //  scaleFontSize : 16,
+      //  responsive: true,
+      //  pointDotRadius: 10,
+      //  bezierCurve: false,
+      //  scaleShowVerticalLines: false,
+      //  scaleGridLineColor: 'black'
+    }
+    var chart;
+    if(props.chartOption === "LINE"){
+      console.log('change to line chart')
+      chart = <LineChart data={props.chartData} options={options}width="600" height="400"/>
+    } else {
+      console.log('change to bar chart')
+      chart = <BarChart data={props.chartData} width="600" height="400"/>
+    }
+
     return (
 
-        <BarChart data={props.chartData}/>
+        chart
 
     );
 };
+
+
+
 
 export default DashboardRightCol;
 

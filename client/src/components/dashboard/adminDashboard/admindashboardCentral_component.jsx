@@ -29,22 +29,24 @@ class AdminDashboard extends React.Component {
             numberClasses: 0,
             numberStudents: 0,
             daysLeft: 0,
+            chartLabels: this.props.chartLabels,
+            chartDataSet: this.props.chartDataSet,
             chartData: {
-                            labels: ['smith', 'jones', 'robot'],
+                            labels: this.chartLabels ||['jones', 'smith', 'robot'],
                             datasets: [
                                 {
-                                    label: "My First dataset",
-
                                     borderWidth: 1,
-                                    data: [65, 59, 80],
+                                    data: this.chartDataSet || [50,60,80]
                                 }
                             ]
-                        }
+                        },
+            chartOption: this.props.chartOption
         }
     }
 
      componentWillMount() {
         let that = this;
+
          // userid being saved in storage upon successfull signup or login
         var id = localStorage.getItem('userid');
          // api request using userid saved in localStorage
@@ -83,7 +85,26 @@ class AdminDashboard extends React.Component {
         this.serverRequest.abort();
     }
 
+    componentWillReceiveProps(nextProps) {
+        console.log('state is being changed after redux state change')
+      this.setState({
+        chartOption: nextProps.chartOption,
+        // chartLabels: this.props.chartLabels,
+        // chartDataSet: this.props.chartDataSet,
+        chartData: {
+                        labels: this.props.chartLabels ||['jones', 'smith', 'robot'],
+                        datasets: [
+                            {
+                                borderWidth: 1,
+                                data: this.props.chartDataSet || [50,60,80]
+                            }
+                        ]
+                    }
+      });
+    }
+
     render() {
+        console.log(this.props)
         console.log("STATE", this.state)
             if(this.state.isAuthenticated){
                 return (
@@ -100,7 +121,7 @@ class AdminDashboard extends React.Component {
                                 />
                                 <div className="dashboardCols clearfix">
                                     <div>
-                                        <h3>{/*<a href="/classform"><i className="fa fa-plus" aria-hidden="true"></i></a>*/} Teachers </h3>
+                                        <h3>{/*<a href="/classform"><i className="fa fa-plus" aria-hidden="true"></i></a>*/} Options </h3>
                                         <DashboardLeftCol classes={this.state.teachers} />
                                     </div>
                                     <div>
@@ -108,6 +129,7 @@ class AdminDashboard extends React.Component {
                                         <DashboardRightCol students={this.state.
                                             students}
                                             chartData={this.state.chartData}
+                                            chartOption={this.state.chartOption}
                                         />
                                     </div>
                                 </div>
@@ -135,7 +157,10 @@ function mapStateToProps(state) {
     return {
         isAuthenticated: state.auth.isAuthenticated,
         token: state.auth.token,
-        isAdmin: state.auth.isAdmin
+        isAdmin: state.auth.isAdmin,
+        chartOption: state.graph.option,
+        chartLabels: state.graph.labels,
+        chartDataSet: state.graph.data
     }
 }
 
