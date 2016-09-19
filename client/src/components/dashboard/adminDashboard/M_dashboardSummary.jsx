@@ -3,24 +3,24 @@
 import React from 'react';
 
 
-const DashboardSummary = ({ first, last, numberClasses, numberStudents, daysLeft }) => {
+const DashboardSummary = ({ first, last, totalClasses, totalStudents, totalTeachers , daysLeft }) => {
 
     return (
         <div className="clearfix dashboardSummary">
             <div className="dashboardSummaryProf">
-                <img src="http://www.globaldetroit.com/wp-content/uploads/2014/10/Gracie-Headshot-square.png" alt=""/>
+                <img src='https://static.pexels.com/photos/90333/pexels-photo-90333.jpeg' alt=""/>
                 <h3>{first} {last}</h3>
             </div>
             <div className="dashboardSummaryStats clearfix">
                 <div>
-                    <p>{numberClasses}</p>
-                    <h5>Number of Classes</h5>
-                    <h5>THIS WAS CHANGED SDDASD</h5>
+                    <p>{totalTeachers}</p>
+                    <h5>Total Number of Teachers</h5>
+
 
                 </div>
                 <div>
-                    <p>{numberStudents}</p>
-                    <h5>Number of Students</h5>
+                    <p>{totalStudents}</p>
+                    <h5>Total Number of Students</h5>
                 </div>
                 <div>
                     <p>{daysLeft}</p>

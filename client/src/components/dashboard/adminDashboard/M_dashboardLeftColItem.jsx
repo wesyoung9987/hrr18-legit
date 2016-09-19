@@ -20,9 +20,13 @@ class DashboardLeftColItem extends React.Component {
         browserHistory.push('/class');
     }
 
+    displayTeachersAndStudents(){
+        console.log('clicked')
+    }
+
     render(){
         return (
-            <a onClick={this.getClass.bind(this, this.props.classDetails.id)}>
+            <a onClick={this.displayTeachersAndStudents}>
                 <div className="dashboardLeftColItem clearfix">
                     <div>
                         <h6>Title</h6>

@@ -161,7 +161,7 @@ main {
 }
 
 .dashboardCols > div > div{
-    min-height: 200px;
+    min-height: 400px;
 }
 
 .dashboardLeftCol ul{
