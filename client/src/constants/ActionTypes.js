@@ -66,8 +66,10 @@ export const DELETEASSIGNMENT_FAILURE = 'DELETEASSIGNMENT_FAILURE';
 
 export const BAR = 'BAR';
 export const LINE = 'LINE';
+export const RADAR = 'RADAR';
 
 
 export const TEACHERS_STUDENTS = 'TEACHERS_STUDENTS';
 export const STUDENTS_SCORES = 'STUDENTS_SCORES';
+export const CLASS_AVERAGES = 'CLASS_AVERAGES';
 export const STUDENTS = 'STUDENTS';

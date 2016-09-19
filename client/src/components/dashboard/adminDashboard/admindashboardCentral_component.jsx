@@ -32,11 +32,11 @@ class AdminDashboard extends React.Component {
             chartLabels: this.props.chartLabels,
             chartDataSet: this.props.chartDataSet,
             chartData: {
-                            labels: this.chartLabels ||['jones', 'smith', 'robot'],
+                            labels:[],
                             datasets: [
                                 {
                                     borderWidth: 1,
-                                    data: this.chartDataSet || [50,60,80]
+                                    data:[]
                                 }
                             ]
                         },
@@ -51,31 +51,71 @@ class AdminDashboard extends React.Component {
         var id = localStorage.getItem('userid');
          // api request using userid saved in localStorage
          // will get back the user's info, their classes, and their students
-        this.serverRequest = $.ajax({
-            method: "GET",
-            url: `/api/report/users/${id}`,
-            contentType: 'application/json',
-            data: {},
-            success: function(data){
-                // Calculate number of calendar days left
-                var start = new Date();
-                var end = new Date(data.details.schoolEndDate);
-                var difference = end.getTime() - start.getTime();
-                var milliseconds = new Date(difference)
-                var seconds = milliseconds / 1000;
-                var minutes = seconds / 60;
-                var days = Math.ceil(minutes / 1440);
-                // update the state
-                that.setState({
-                    classes: data.classes,
-                    students: data.students,
-                    first: data.details.first || 'Welcome!',
-                    last: data.details.last,
-                    numberClasses: data.classes.length,
-                    numberStudents: data.students.length,
-                    daysLeft: `${days}`
-                })
-            }
+
+        // this.serverRequest = $.ajax({
+        //     method: "GET",
+        //     url: `/api/report/users/${id}`,
+        //     contentType: 'application/json',
+        //     data: {},
+        //     success: function(data){
+        //         // Calculate number of calendar days left
+        //         var start = new Date();
+        //         var end = new Date(data.details.schoolEndDate);
+        //         var difference = end.getTime() - start.getTime();
+        //         var milliseconds = new Date(difference)
+        //         var seconds = milliseconds / 1000;
+        //         var minutes = seconds / 60;
+        //         var days = Math.ceil(minutes / 1440);
+        //         // update the state
+        //         that.setState({
+        //             classes: data.classes,
+        //             students: data.students,
+        //             first: data.details.first || 'Welcome!',
+        //             last: data.details.last,
+        //             numberClasses: data.classes.length,
+        //             numberStudents: data.students.length,
+        //             daysLeft: `${days}`
+        //         })
+        //     }
+        // })
+        this.serverRequest = $.get('/admin/leet/').then(function(data){
+            var teachers = data;
+            $.get('/admin/leetT/').then(function(data){
+                var numStudents = data.numStudents
+                var numClasses = data.classes
+                var id = localStorage.getItem('userid');
+                console.log(id, numStudents, numClasses)
+                $.get("/api/report/users/4").then(function(data){
+                    console.log(data)
+                }).catch(function(err){console.log(err)})
+                // $.ajax({
+                //     method: "GET",
+                //     url: `/api/report/users/`,
+                //     contentType: 'application/json',
+                //     success: function(data){
+                //         console.log(data, teachers)
+                //         // Calculate number of calendar days left
+                //         var start = new Date();
+                //         var end = new Date(data.details.schoolEndDate);
+                //         var difference = end.getTime() - start.getTime();
+                //         var milliseconds = new Date(difference)
+                //         var seconds = milliseconds / 1000;
+                //         var minutes = seconds / 60;
+                //         var days = Math.ceil(minutes / 1440);
+                //         // update the state
+                //         that.setState({
+                //             totalTeachers: teachers,
+                //             totalClasses: numberClasses,
+                //             totalStudents: numStudents,
+                //             first: data.details.first || 'Welcome!',
+                //             last: data.details.last,
+                //             daysLeft: `${days}`
+                //         })
+                //     },
+                //     catch: function(err){console.log(err)}
+                // })
+            })
+
         })
     }
 
@@ -115,8 +155,8 @@ class AdminDashboard extends React.Component {
                                 <DashboardSummary
                                     first={this.state.first}
                                     last={this.state.last}
-                                    numberClasses={this.state.numberClasses}
-                                    numberStudents={this.state.numberStudents}
+                                    totalTeachers={this.state.totalTeachers}
+                                    numberStudents={this.state.totalStudents}
                                     daysLeft={this.state.daysLeft}
                                 />
                                 <div className="dashboardCols clearfix">
@@ -125,9 +165,8 @@ class AdminDashboard extends React.Component {
                                         <DashboardLeftCol classes={this.state.teachers} />
                                     </div>
                                     <div>
-                                        <h3>Students</h3>
-                                        <DashboardRightCol students={this.state.
-                                            students}
+                                        <h3>Display</h3>
+                                        <DashboardRightCol
                                             chartData={this.state.chartData}
                                             chartOption={this.state.chartOption}
                                         />

@@ -1,5 +1,5 @@
 import {
-  BAR, LINE, TEACHERS_STUDENTS, STUDENTS_SCORES
+  BAR, LINE, RADAR, TEACHERS_STUDENTS, STUDENTS_SCORES, CLASS_AVERAGES
 } from '../constants/ActionTypes.js'
 import axios from 'axios';
 
@@ -15,16 +15,22 @@ function displayLine(){
         type: LINE
     }
 }
-
+function displayRadar(){
+  return {
+    type: RADAR
+  }
+}
 export function chooseGraphDisplay(selection) {
   return function(dispatch) {
     if(selection === BAR){
   console.log("Select BAR")
       dispatch(displayBar())
-    } else {
+    } else if(selection === LINE){
   console.log("Select Line")
 
       dispatch(displayLine())
+    } else if (selection === RADAR){
+      dispatch(displayRadar())
     }
 
   };
@@ -42,6 +48,13 @@ function displayStudentScores(chartData){
     payload: chartData
   }
 }
+function displayClassAverages(chartData){
+  return {
+    type: CLASS_AVERAGES,
+    payload: chartData
+  }
+}
+
 
 export function chooseData(selection){
   return function(dispatch){
@@ -75,8 +88,9 @@ export function chooseData(selection){
         }
       dispatch(displayTeacherAndStudents(sampleTeacherStudentData))
     } else if (selection === STUDENTS_SCORES){
+      console.log('students_scores action creator running')
       // call to server here
-      var sampleSampleStudentScores = {
+      var sampleStudentScores = {
         students:[
           {first:'dave', last:'wer', scores:[50,60,30]},
           {first:'asd', last:'fds', scores:[30,100,20]},
@@ -84,7 +98,51 @@ export function chooseData(selection){
           {first:'gfds', last:'dfgd', scores:[45,63,56]}
         ]
       }
-      dispatch(sampleSampleStudentScores)
+      dispatch(displayStudentScores(sampleStudentScores))
+    } else if (selection === CLASS_AVERAGES){
+      console.log('students_scores action creator running')
+      // call to server here
+      var sampleClassScores = {
+
+           teachers:[
+             {
+              name: 'dave',
+              students: [
+                  {
+                  first:'hello',
+                  last: 'world',
+                  scores: [15, 60, 100]
+                  },
+                  {
+                  first:'foo',
+                  last: 'bar',
+                  scores: [11, 61, 99]
+                  }
+
+               ]
+
+             },
+             {
+              name: 'another person',
+              students: [
+                  {
+                  first:'hello',
+                  last: 'world',
+                  scores: [100, 60, 100]
+                  },
+                  {
+                  first:'foo',
+                  last: 'bar',
+                  scores: [100, 100, 99]
+                  }
+
+               ]
+             }
+
+           ]
+
+      }
+      dispatch(displayClassAverages(sampleClassScores))
     }
   }
 

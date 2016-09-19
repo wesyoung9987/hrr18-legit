@@ -63,8 +63,10 @@ export function loginUser(creds) {
             // call receiveLogin so user data gets sent to reducers to create new state
             // hard coded admin for now
             // replace with response.data.admin later
-            if(true){
+            console.log(response.data)
+            if(response.data.teachers === 'admin'){
               // if user is admin
+              console.log('being redirect to admin')
               dispatch(receiveAdminLogin(response.data));
               // redircet user to the main dashboard
               browserHistory.push('/admin')

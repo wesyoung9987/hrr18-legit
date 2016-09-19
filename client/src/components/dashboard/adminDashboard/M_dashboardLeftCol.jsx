@@ -37,22 +37,33 @@ class AdminDashboardLeftCol extends React.Component {
             <button className="dashboardLeftColItem clearfix"
                     onClick={() => this.props.chooseGraphDisplay('BAR')}>
 
-
-
-
-
                 Bar Graph
             </button>
             <button className="dashboardLeftColItem clearfix"
                     onClick={() => this.props.chooseGraphDisplay('LINE')}>
                 Line Graph
             </button>
+            <button className="dashboardLeftColItem clearfix"
+                    onClick={() => this.props.chooseGraphDisplay('RADAR')}>
+                Radar Graph
+            </button>
                 <div>
                     <button className="dashboardLeftColItem clearfix"
                             onClick={
                                 () => this.props.chooseData('TEACHERS_STUDENTS')}>
-                        Teachers - Students
+                        Teachers to Students
                     </button>
+                    <button className="dashboardLeftColItem clearfix"
+                            onClick={
+                                () => this.props.chooseData('STUDENTS_SCORES')}>
+                        Student Assignment Averages
+                    </button>
+                    <button className="dashboardLeftColItem clearfix"
+                            onClick={
+                                () => this.props.chooseData('CLASS_AVERAGES')}>
+                        Class Averages
+                    </button>
+
                 </div>
             </div>
 

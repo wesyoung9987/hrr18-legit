@@ -31,9 +31,12 @@ const DashboardRightCol = (props) => {
     if(props.chartOption === "LINE"){
       console.log('change to line chart')
       chart = <LineChart data={props.chartData} options={options}width="600" height="400"/>
-    } else {
+    } else if (props.chartOption === "BAR"){
       console.log('change to bar chart')
       chart = <BarChart data={props.chartData} width="600" height="400"/>
+    } else if (props.chartOption === "RADAR"){
+      chart = <RadarChart data={props.chartData} width="600" height="400"/>
+
     }
 
     return (

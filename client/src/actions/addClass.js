@@ -8,11 +8,12 @@ import { browserHistory } from 'react-router'
 // Action types are held separately for modularity purposes
 import * as types from '../constants/ActionTypes';
 
-// Called before api request, info sent to reducers. 
+// Called before api request, info sent to reducers.
 // Reducer waiting for this action type is in reducers/classes_reducer.js
 function requestAddClass(classInfo) {
   return {
     type: types.ADDCLASS_REQUEST,
+
     isFetching: true,
     payload: classInfo
   }
