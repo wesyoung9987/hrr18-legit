@@ -61,6 +61,9 @@ User.hasMany(Section);
 //    - Student.addSections() -> associates a student with an array of Sections
 //
 
+var Student_Roster = db.define('Student_Roster', {
+});
+
 Section.belongsToMany(Student, {
   through: 'Student_Roster'
 });
@@ -115,6 +118,45 @@ module.exports = {
 // POST ENROL:  associate students with sections; creates a new record in the
 //              table 'Student_Roster'
 //
+  teachersStudents: function(req, res){
+    User.findAll({
+      where:{
+        isAdmin: 'teacher'
+      }
+    })
+    .then(function(teachers){
+      Section.findAll({})
+      .then(function(sections){
+        Student_Roster.findAll({})
+        .then(function(roster){
+          res.send(roster);
+        })
+      })
+    })
+  },
+
+  allStudentScores: function(req, res){
+    Student.findAll({})
+    .then(function(students){
+      Student_Outcomes.findAll({})
+        .then(function(outcomes){
+          var studentOutcomes = students.map(function(student){
+            var obj = {};
+            obj.first = student.first;
+            obj.last = student.last
+            obj.scores = [];
+            outcomes.forEach(function(outcome){
+              if(outcome.StudentId === student.id){
+                obj.scores.push(outcome.score);
+              }
+            })
+            return obj;
+          })
+          res.send(studentOutcomes);
+        })
+    })
+  },
+
   allClasses: function(req,res){
     Section.findAll({})
     .then(function(cls){
