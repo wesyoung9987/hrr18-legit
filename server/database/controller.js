@@ -128,8 +128,103 @@ module.exports = {
       Section.findAll({})
       .then(function(sections){
         Student_Roster.findAll({})
-        .then(function(roster){
-          res.send(roster);
+        .then(function(rosters){
+          Student.findAll({})
+          .then(function(allstudents){
+            var list = teachers.map(function(teacher){
+              var obj = {};
+              obj.first = teacher.first;
+              obj.last = teacher.last;
+              sections.forEach(function(section){
+                if(section.UserId === teacher.id){
+                  obj.id = section.id;
+                }
+              })
+              return obj;
+            })
+            var list2 = list.map(function(item){
+              var obj = {};
+              obj.first = item.first;
+              obj.last = item.last;
+              obj.ids = []
+              rosters.forEach(function(roster){
+                if(roster.SectionId === item.id){
+                  obj.ids.push(roster.StudentId);
+                }
+              })
+              return obj;
+            })
+            var list3 = list2.map(function(item){
+              var obj = {};
+              obj.name = item.first + ' ' + item.last;
+              obj.students = [];
+              allstudents.forEach(function(student){
+                item.ids.forEach(function(id){
+                  if(student.id === id){
+                    obj.students.push(student.first + " " + student.last);
+                  }
+                })
+              })
+              return obj;
+            })
+            res.send(list3);
+          })
+        })
+      })
+    })
+  },
+
+  teachersStudentsScores: function(req, res){
+    User.findAll({
+      where:{
+        isAdmin: 'teacher'
+      }
+    })
+    .then(function(teachers){
+      Section.findAll({})
+      .then(function(sections){
+        Student_Roster.findAll({})
+        .then(function(rosters){
+          Student.findAll({})
+          .then(function(allstudents){
+            var list = teachers.map(function(teacher){
+              var obj = {};
+              obj.first = teacher.first;
+              obj.last = teacher.last;
+              sections.forEach(function(section){
+                if(section.UserId === teacher.id){
+                  obj.id = section.id;
+                }
+              })
+              return obj;
+            })
+            var list2 = list.map(function(item){
+              var obj = {};
+              obj.first = item.first;
+              obj.last = item.last;
+              obj.ids = []
+              rosters.forEach(function(roster){
+                if(roster.SectionId === item.id){
+                  obj.ids.push(roster.StudentId);
+                }
+              })
+              return obj;
+            })
+            var list3 = list2.map(function(item){
+              var obj = {};
+              obj.name = item.first + ' ' + item.last;
+              obj.students = [];
+              allstudents.forEach(function(student){
+                item.ids.forEach(function(id){
+                  if(student.id === id){
+                    obj.students.push(student.first + " " + student.last);
+                  }
+                })
+              })
+              return obj;
+            })
+            res.send(list3);
+          })
         })
       })
     })
@@ -140,19 +235,37 @@ module.exports = {
     .then(function(students){
       Student_Outcomes.findAll({})
         .then(function(outcomes){
-          var studentOutcomes = students.map(function(student){
-            var obj = {};
-            obj.first = student.first;
-            obj.last = student.last
-            obj.scores = [];
-            outcomes.forEach(function(outcome){
-              if(outcome.StudentId === student.id){
-                obj.scores.push(outcome.score);
-              }
+          Assignment.findAll({})
+          .then(function(assignments){
+            var studentOutcomes = students.map(function(student){
+              var obj = {};
+              obj.first = student.first;
+              obj.last = student.last
+              obj.scores = [];
+              outcomes.forEach(function(outcome){
+                if(outcome.StudentId === student.id){
+                  obj.scores.push([outcome.score, outcome.AssignmentId]);
+                }
+              })
+              return obj;
             })
-            return obj;
+            var studentOutcomes2 = studentOutcomes.map(function(student2){
+              var obj2 = {};
+              obj2.first = student2.first;
+              obj2.last = student2.last;
+              obj2.scores = [];
+              assignments.forEach(function(assignment){
+                  student2.scores.forEach(function(score){
+                    if(score[1] === assignment.id){
+                      var percent = Math.floor(score[0] / assignment.maxScore * 100);
+                      obj2.scores.push(percent);
+                    }
+                  })
+              })
+              return obj2;
+            })
+            res.send(studentOutcomes2);
           })
-          res.send(studentOutcomes);
         })
     })
   },
